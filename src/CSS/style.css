@@ -1,0 +1,136 @@
+:root {
+  --not-white: #fffaf3;
+  --drk-white: #f2e9e1;
+  --not-black: #191724;
+  --not-red:   #eb6f92;
+  --not-blue:  #31748f;
+  --not-green: #56949f;
+  --not-grey:  #393552;
+  --muted:     #6e6a86;
+  --hdr-hght:  5rem;
+  --lrg-txt:   2.2rem;
+}
+
+.light-theme {
+  --bg-color: var(--not-white);
+  --bg-side:  var(--drk-white);
+  --text:     var(--not-black);
+}
+
+/* .dark-theme { */
+/*   --bg-color: var(--not-grey); */
+/* } */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+.main-container {
+  height: 100vh;
+  display: flex;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.side-note-menu {
+  height: 100%;
+  width: 20rem;
+  background-color: var(--bg-side);
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--hdr-hght);
+}
+
+.side-nav span {
+  color: var(--text);
+}
+
+.side-nav span p {
+  font-size: var(--lrg-txt);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: var(--bg-color);
+}
+
+header, footer {
+  height: var(--hdr-hght);
+}
+
+header {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+header ul {
+  display: flex;
+}
+
+header li {
+  list-style: none;
+  padding: var(--lrg-txt);
+}
+
+header a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 1.5rem;
+}
+
+.note-container-main {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.note-area {
+  width: 90%
+}
+
+article {
+  margin-bottom: var(--lrg-txt);
+}
+
+.read-note-area p {
+  font-family: 'Libre Baskerville', serif;
+  color: var(--text);
+  font-size: 1.6rem;
+}
+
+i {
+  font-size: 3rem;
+}
+
+.icons {
+  color: var(--text);
+}
+
+textarea {
+  caret-color: var(--not-red);
+  border: none;
+  border-bottom: 2px solid var(--text);
+  outline: none;
+  resize: none;
+  overflow: auto;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer p {
+  color: var(--text);
+  font-size: var(--lrg-txt);
+}
