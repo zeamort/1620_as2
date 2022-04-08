@@ -48,23 +48,46 @@ newNoteBtn.addEventListener('click', createNoteTakingArea)
 // saveTextBtn.addEventListener('click', assembleNote)
 
 const newNoteBtn = document.querySelector(".icons")
-const noteArea = document.querySelector(".create-note-area")
+const noteArea = document.querySelector(".write-note-area")
+let noteID = 1
+
 
 newNoteBtn.addEventListener('click', createNewNote)
 
 function createNewNote() {
   const noteTemplate = `
-  <textarea name="newNote" id="newNote" cols="210" rows="60" placeholder="write here..."></textarea>
-  <button type="submit">Save</button>
-  <button id="cancel-button" type="reset">Cancel</button>
+  <textarea name="newNote" id="newNote" cols="210" rows="50" placeholder="write here..."></textarea>
+  <button id="saveButton" type="submit">Save</button>
+  <button id="cancelButton" type="reset">Cancel</button>
   `
   noteArea.innerHTML = ''
   noteArea.insertAdjacentHTML("afterbegin", noteTemplate)
 
-  const cancelBtn = document.querySelector("#cancel-button")
-  cancelBtn.addEventListener('click', cancelNewNote)
+  const cancelBtn = document.querySelector("#cancelButton")
+  cancelBtn.addEventListener('click', removeNoteTemplate)
+
+  const saveBtn = document.querySelector("#saveButton")
+  
+  saveBtn.addEventListener('click', (evt) => {
+    let noteLines = document.getElementById("newNote").value.split("\n")
+    let noteTitle = noteLines[0];
+
+    let noteContent = noteLines[1];
+    // let index = 1
+    // while (index < noteLines.length) {
+    //   noteContent.push(noteLines[index])
+    //   index += 1
+    // }
+
+    notes.push({title: noteTitle, noteBody: noteContent, id: (noteID+1)})
+    noteID = noteID + 1;
+    removeNoteTemplate()
+  })
 }
 
-function cancelNewNote() {
-  location.reload();
+function removeNoteTemplate() {
+  newNote.remove()
+  saveButton.remove()
+  cancelButton.remove()
 }
+
