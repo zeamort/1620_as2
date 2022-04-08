@@ -56,8 +56,15 @@ function createNewNote() {
   const noteTemplate = `
   <textarea name="newNote" id="newNote" cols="210" rows="60" placeholder="write here..."></textarea>
   <button type="submit">Save</button>
-  <button type="reset">Cancel</button>
+  <button id="cancel-button" type="reset">Cancel</button>
   `
   noteArea.innerHTML = ''
   noteArea.insertAdjacentHTML("afterbegin", noteTemplate)
+
+  const cancelBtn = document.querySelector("#cancel-button")
+  cancelBtn.addEventListener('click', cancelNewNote)
+}
+
+function cancelNewNote() {
+  location.reload();
 }
