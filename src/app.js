@@ -32,12 +32,13 @@ function createNewNote() {
   saveBtn.addEventListener('click', (evt) => {
     let noteLines = document.getElementById("newNote").value.split("\n")
     let noteTitle = noteLines[0];
-    addToSideNav(noteTitle)
-
     let noteContent = noteLines[1];
     
     notes.push({title: noteTitle, noteBody: noteContent, id: (noteID+1)})
     noteID = noteID + 1;
+
+    addToSideNav(noteTitle, noteID)
+
     removeNoteTemplate()
   })
 }
@@ -52,9 +53,17 @@ function removeNoteTemplate() {
 //Add to side nav
 const sideNavList = document.querySelector('.notes-list')
 
-function addToSideNav(title) {
-  titleProperHTML = '<li>' + title + '</li>'
-  sideNavList.insertAdjacentHTML("beforeend", titleProperHTML)
+function addToSideNav(title, index) {
+  if (title != '') {
+    titleProperHTML = '<li id=" ' + index + '">' + title + '</li>'
+    sideNavList.insertAdjacentHTML("beforeend", titleProperHTML)
+    makeSideNotesClickable(index)
+  }
 }
 
 addToSideNav(notes[0].title)
+
+//Open Saved Note from Side Nav
+function makeSideNotesClickable(index) {
+  
+}
