@@ -60,7 +60,8 @@ function createNewNote() {
   <button id="saveButton" type="submit">Save</button>
   <button id="cancelButton" type="reset">Cancel</button>
   `
-  noteArea.innerHTML = ''
+  
+  newNoteBtn.innerHTML = ''
   noteArea.insertAdjacentHTML("afterbegin", noteTemplate)
 
   const cancelBtn = document.querySelector("#cancelButton")
@@ -89,5 +90,6 @@ function removeNoteTemplate() {
   newNote.remove()
   saveButton.remove()
   cancelButton.remove()
+  newNoteBtn.innerHTML = '<i class="fa-solid fa-circle-plus">'
 }
 
