@@ -65,6 +65,9 @@ function saveNote(event) {
 
 //function that will remove the inserted note template and return the new note button
 function removeNoteTemplate() {
+  if (readArea.innerHTML !== '') {
+    readArea.innerHTML = ''
+  }
   if (typeof newNote !== 'undefined') {
     newNote.remove()
   }
@@ -98,21 +101,25 @@ function addToSideNav(title, titleID) {
 addToSideNav(notes[0].title, notes[0].id)
 
 function displayTheNote(event) {
+  readArea.innerHTML = ''
+
   //note template HTML to be inserted
   const noteTemplate = `
-  <textarea name="newNote" id="newNote" cols="210" rows="50" placeholder="write here..."></textarea>
+  <h1 id="noteTitle"></h1>
+  <p id="noteBody"></p>
   <button id="closeButton">x</button>
   `
 
   //Remove the new note button when creating new note
   newNoteBtn.innerHTML = ''
   //insert the noteTemplate into the note taking area
-  noteArea.insertAdjacentHTML("afterbegin", noteTemplate)
+  readArea.insertAdjacentHTML("afterbegin", noteTemplate)
   
   //declare and initialize noteID with the correct notes id
   const noteID = event.target.id - 1
-  console.log(event.target.id)
-  newNote.textContent = notes[noteID].title + '\n' + notes[noteID].noteBody 
+  // console.log(event.target.id)
+  noteTitle.textContent = notes[noteID].title
+  noteBody.textContent = notes[noteID].noteBody 
   
   //select and add event listener to close button
   const closeBtn = document.querySelector('#closeButton')
