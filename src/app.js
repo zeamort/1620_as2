@@ -9,11 +9,10 @@ const notes = [
   }
 ]
 
-//selecting the new note button by class
 const newNoteBtn = document.querySelector(".icons")
-//selecting the note taking area by class
 const noteArea = document.querySelector(".write-note-area")
 const readArea = document.querySelector('.read-note-area')
+
 //declaring and initializing the noteID for notes array
 let noteID = 1
 
@@ -47,8 +46,10 @@ function saveNote() {
   let noteLines = document.getElementById("newNote").value.split("\n")
   //store the first index of the noteLines as the note title
   let noteTitle = noteLines[0];
+  //
+  noteLines.splice(0,1)
   //store the remainder of the notes as the content
-  let noteContent = noteLines[1];
+  let noteContent = noteLines.join("\n")
   //add the title, content and id to the notes array
   notes.push({ title: noteTitle, noteBody: noteContent, id: (noteID + 1) })
   //increment the noteID in preparation of the next time a note is saved
@@ -75,8 +76,6 @@ function removeNoteTemplate() {
   }
   newNoteBtn.innerHTML = '<i class="fa-solid fa-circle-plus">'
 }
-
-//Add to side nav
 
 //select the side navigation notes list by class
 const sideNavList = document.querySelector('.notes-list')
@@ -105,12 +104,13 @@ function displayTheNote(event) {
   <textarea name="newNote" id="newNote" cols="210" rows="50" placeholder="write here..."></textarea>
   <button id="closeButton">x</button>
   `
+
   //Remove the new note button when creating new note
   newNoteBtn.innerHTML = ''
   //insert the noteTemplate into the note taking area
   noteArea.insertAdjacentHTML("afterbegin", noteTemplate)
   
-  console.log(event.path[0].id)
+  //declare and initialize noteID with the correct notes id
   const noteID = event.path[0].id - 1
   newNote.textContent = notes[noteID].title + '\n' + notes[noteID].noteBody 
   
