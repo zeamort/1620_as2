@@ -1,3 +1,5 @@
+'use strict';
+
 //notes array of objects used to store saved notes
 const notes = [
   { 
@@ -11,6 +13,7 @@ const notes = [
 const newNoteBtn = document.querySelector(".icons")
 //selecting the note taking area by class
 const noteArea = document.querySelector(".write-note-area")
+const readArea = document.querySelector('.read-note-area')
 //declaring and initializing the noteID for notes array
 let noteID = 1
 
@@ -36,28 +39,32 @@ function createNewNote() {
   //selecting the save button by id
   const saveBtn = document.querySelector("#saveButton")
   //add event listener to the save button that will run anonymous function
-  saveBtn.addEventListener('click', () => {
-    //store the inputted text as an array separated by new lines
-    let noteLines = document.getElementById("newNote").value.split("\n")
-    //store the first index of the noteLines as the note title
-    let noteTitle = noteLines[0];
-    //store the remainder of the notes as the content
-    let noteContent = noteLines[1];
-    //add the title, content and id to the notes array
-    notes.push({title: noteTitle, noteBody: noteContent, id: (noteID+1)})
-    //increment the noteID in preparation of the next time a note is saved
-    noteID = noteID + 1;
-    //call function to add the saved note's title to the side navigation.
-    addToSideNav(noteTitle, noteID)
-    //call the removeNoteTemplate function to remove the inserted note template and return the new note button
-    removeNoteTemplate()
-  })
+  saveBtn.addEventListener('click', saveNote)
 }
+//save function
+function saveNote() {
+  //store the inputted text as an array separated by new lines
+  let noteLines = document.getElementById("newNote").value.split("\n")
+  //store the first index of the noteLines as the note title
+  let noteTitle = noteLines[0];
+  //store the remainder of the notes as the content
+  let noteContent = noteLines[1];
+  //add the title, content and id to the notes array
+  notes.push({ title: noteTitle, noteBody: noteContent, id: (noteID + 1) })
+  //increment the noteID in preparation of the next time a note is saved
+  noteID = noteID + 1;
+  //call function to add the saved note's title to the side navigation.
+  addToSideNav(noteTitle, noteID)
+  //call the removeNoteTemplate function to remove the inserted note template and return the new note button
+  removeNoteTemplate()
+}
+
 //function that will remove the inserted note template and return the new note button
 function removeNoteTemplate() {
   newNote.remove()
   saveButton.remove()
   cancelButton.remove()
+  closeButton.remove()
   newNoteBtn.innerHTML = '<i class="fa-solid fa-circle-plus">'
 }
 
@@ -71,46 +78,35 @@ function addToSideNav(title, titleID) {
   //conditional to prevent saving note without title
   if (title != '') {
     //variable with template of the HTML to be inserted. Will include an id that matches its id in the notes array
-    titleProperHTML = '<li id=" ' + titleID + '">' + title + '</li>'
+    const titleProperHTML = '<li id="' + titleID + '">' + title + '</li>'
     //insert the above template into the side navigation
     sideNavList.insertAdjacentHTML("beforeend", titleProperHTML)
+    //add event handler to the title in the side nav 
+    const selectedNote = document.getElementById(titleID)
+    selectedNote.addEventListener('click', displayTheNote)
     //call function to add event listener to each side nav li
-    makeSideNotesClickable(titleID)
+    // makeSideNotesClickable(titleID)
   }
 }
 
-//These three lines handle the initial note by selecting it, giving it an id of 1 and calling the addToSideNav function
-const firstListItem = document.querySelector('ul li')
-firstListItem.setAttribute("id", "1")
 addToSideNav(notes[0].title, notes[0].id)
 
-//Open Saved Note from Side Nav
-
-//This function will add event listeners to the notes on the side navigation
-function makeSideNotesClickable(titleID) {
-  //selecting the element by id
-  let selectedNote = document.getElementById(titleID)
-  //add event listener to element selectedNote to call openNoteToRead function
-  selectedNote.addEventListener('click', openNoteToRead)
-
-  // for (line of notes) {
-  //   const elementID = line.id
-  //   console.log(elementID)
-  //   let selectedNote = document.getElementById('elementID')
-  //   selectedNote.addEventListener('click', openNoteToRead)
-  // }  
-}
-
-//This function will create template and insert the saved note that was clicked
-function openNoteToRead() {
-  const readArea = document.querySelector('.read-note-area')
-  //note template to recreate
+function displayTheNote(event) {
+  //note template HTML to be inserted
   const noteTemplate = `
-  <textarea name="newNote" id="newNote" cols="210" rows="50"></textarea>
-  <button>x</button>
+  <textarea name="newNote" id="newNote" cols="210" rows="50" placeholder="write here..."></textarea>
+  <button id="closeButton">x</button>
   `
-  //insert the noteTemplate into the readArea
-  readArea.insertAdjacentHTML("beforeend", noteTemplate)
-  //testing. Will change for the actual note input afterwards.
-  newNote.innerHTML = '<p>test</p>'
+  //Remove the new note button when creating new note
+  newNoteBtn.innerHTML = ''
+  //insert the noteTemplate into the note taking area
+  noteArea.insertAdjacentHTML("afterbegin", noteTemplate)
+  
+  console.log(event.path[0].id)
+  const noteID = event.path[0].id - 1
+  newNote.textContent = notes[noteID].title + '\n' + notes[noteID].noteBody 
+  
+  //select and add event listener to close button
+  const closeBtn = document.querySelector('#closeButton')
+  closeBtn.addEventListener('click', removeNoteTemplate)
 }
