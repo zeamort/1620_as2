@@ -23,7 +23,7 @@ newNoteBtn.addEventListener('click', createNewNote)
 function createNewNote() {
   //note template HTML to be inserted
   const noteTemplate = `
-  <textarea name="newNote" id="newNote" cols="210" rows="50" placeholder="write here..."></textarea>
+  <textarea name="newNote" id="newNote"  placeholder="write here..."></textarea>
   <button id="saveButton" type="submit">Save</button>
   <button id="cancelButton" type="reset">Cancel</button>
   `
@@ -105,9 +105,9 @@ function displayTheNote(event) {
 
   //note template HTML to be inserted
   const noteTemplate = `
+  <button id="closeButton">x</button>
   <h1 id="noteTitle"></h1>
   <p id="noteBody"></p>
-  <button id="closeButton">x</button>
   `
 
   //Remove the new note button when creating new note
