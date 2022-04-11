@@ -41,22 +41,25 @@ function createNewNote() {
   saveBtn.addEventListener('click', saveNote)
 }
 //save function
-function saveNote() {
+function saveNote(event) {
   //store the inputted text as an array separated by new lines
   let noteLines = document.getElementById("newNote").value.split("\n")
   //store the first index of the noteLines as the note title
   let noteTitle = noteLines[0];
-  //
-  noteLines.splice(0,1)
+
   //store the remainder of the notes as the content
+  noteLines.splice(0,1)
   let noteContent = noteLines.join("\n")
-  //add the title, content and id to the notes array
-  notes.push({ title: noteTitle, noteBody: noteContent, id: (noteID + 1) })
-  //increment the noteID in preparation of the next time a note is saved
-  noteID = noteID + 1;
-  //call function to add the saved note's title to the side navigation.
-  addToSideNav(noteTitle, noteID)
-  //call the removeNoteTemplate function to remove the inserted note template and return the new note button
+
+  if (noteTitle != '') {
+    notes.push({ title: noteTitle, noteBody: noteContent, id: (noteID + 1) })
+    console.log(event)
+    //increment the noteID in preparation of the next time a note is saved
+    noteID = noteID + 1;
+    //call function to add the saved note's title to the side navigation.
+    addToSideNav(noteTitle, noteID)
+  }
+  //call the removeNoteTemplate function to remove the inserted note template and return the new note button  
   removeNoteTemplate()
 }
 
@@ -82,18 +85,14 @@ const sideNavList = document.querySelector('.notes-list')
 
 //function to add the save note's title to the side navigation
 function addToSideNav(title, titleID) {
-  //conditional to prevent saving note without title
-  if (title != '') {
-    //variable with template of the HTML to be inserted. Will include an id that matches its id in the notes array
-    const titleProperHTML = '<li id="' + titleID + '">' + title + '</li>'
-    //insert the above template into the side navigation
-    sideNavList.insertAdjacentHTML("beforeend", titleProperHTML)
-    //add event handler to the title in the side nav 
-    const selectedNote = document.getElementById(titleID)
-    selectedNote.addEventListener('click', displayTheNote)
-    //call function to add event listener to each side nav li
-    // makeSideNotesClickable(titleID)
-  }
+  //variable with template of the HTML to be inserted. Will include an id that matches its id in the notes array
+  const titleProperHTML = '<li id="' + titleID + '">' + title + '</li>'
+  //insert the above template into the side navigation
+  sideNavList.insertAdjacentHTML("beforeend", titleProperHTML)
+  //add event handler to the title in the side nav 
+  const selectedNote = document.getElementById(titleID)
+  selectedNote.addEventListener('click', displayTheNote)
+  
 }
 
 addToSideNav(notes[0].title, notes[0].id)
