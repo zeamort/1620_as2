@@ -110,7 +110,8 @@ function displayTheNote(event) {
   noteArea.insertAdjacentHTML("afterbegin", noteTemplate)
   
   //declare and initialize noteID with the correct notes id
-  const noteID = event.path[0].id - 1
+  const noteID = event.target.id - 1
+  console.log(event.target.id)
   newNote.textContent = notes[noteID].title + '\n' + notes[noteID].noteBody 
   
   //select and add event listener to close button
