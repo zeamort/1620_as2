@@ -61,10 +61,18 @@ function saveNote() {
 
 //function that will remove the inserted note template and return the new note button
 function removeNoteTemplate() {
-  newNote.remove()
-  saveButton.remove()
-  cancelButton.remove()
-  closeButton.remove()
+  if (typeof newNote !== 'undefined') {
+    newNote.remove()
+  }
+  if (typeof saveButton !== 'undefined') {
+    saveButton.remove()
+  }
+  if (typeof cancelButton !== 'undefined') {
+    cancelButton.remove()
+  }
+  if (typeof closeButton !== 'undefined') {
+    closeButton.remove()
+  }
   newNoteBtn.innerHTML = '<i class="fa-solid fa-circle-plus">'
 }
 
