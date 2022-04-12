@@ -15,12 +15,14 @@
   --bg-color: var(--not-white);
   --bg-side:  var(--drk-white);
   --text:     var(--not-black);
+  --header:   var(--not-blue);
 }
 
 .dark-theme {
   --bg-color: var(--not-grey);
   --bg-side:  var(--muted);
   --text:     var(--drk-white);
+  --header: var(--not-red);
 }
 
 * {
@@ -96,7 +98,7 @@ button {
   font-size: 14px;
 }
 .read-note-area h1 {
-  color: var(--not-red);
+  color: var(--header);
   font-size: var(--lrg-txt);
 }
 
