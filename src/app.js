@@ -101,6 +101,7 @@ function addToSideNav(title, titleID) {
 addToSideNav(notes[0].title, notes[0].id)
 
 function displayTheNote(event) {
+  noteArea.innerHTML = ''
   readArea.innerHTML = ''
 
   //note template HTML to be inserted
