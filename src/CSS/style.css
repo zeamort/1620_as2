@@ -96,6 +96,9 @@ button {
 .read-note-area button {
   margin: 20px;
 }
+.read-note-area p {
+  white-space: pre-wrap;
+}
 
 .main {
   display: flex;

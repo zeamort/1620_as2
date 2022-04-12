@@ -122,6 +122,7 @@ function displayTheNote(event) {
   const noteID = event.target.id - 1
   // console.log(event.target.id)
   noteTitle.textContent = notes[noteID].title
+  console.log(notes[noteID].noteBody)
   noteBody.textContent = notes[noteID].noteBody 
   
   //select and add event listener to close button
