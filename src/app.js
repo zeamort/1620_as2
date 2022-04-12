@@ -106,8 +106,10 @@ function displayTheNote(event) {
   //note template HTML to be inserted
   const noteTemplate = `
   <button id="closeButton">x</button>
-  <h1 id="noteTitle"></h1>
-  <p id="noteBody"></p>
+  <div>
+    <h1 id="noteTitle"></h1>
+    <p id="noteBody"></p>
+  <div>
   `
 
   //Remove the new note button when creating new note

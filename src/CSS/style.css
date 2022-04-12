@@ -83,6 +83,20 @@ button {
   cursor: pointer;
 }
 
+/* style readArea */
+.read-note-area {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.read-note-area div {
+  margin:20px
+}
+.read-note-area button {
+  margin: 20px;
+}
+
 .main {
   display: flex;
   flex-direction: column;
