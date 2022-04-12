@@ -17,9 +17,11 @@
   --text:     var(--not-black);
 }
 
-/* .dark-theme { */
-/*   --bg-color: var(--not-grey); */
-/* } */
+.dark-theme {
+  --bg-color: var(--not-grey);
+  --bg-side:  var(--muted);
+  --text:     var(--drk-white);
+}
 
 * {
   margin: 0;
@@ -57,19 +59,11 @@
 
 /* remove list styling of side nav */
 .side-nav li {
+  color: var(--text);
   list-style: none;
   margin: 5px;
   font-size: 12px;
   cursor: pointer;
-}
-
-/* Textarea styling */
-textarea {
-  width: 100%;
-  height: 500px;
-  padding: 12px 20px;
-  font-size: 14px;
-  resize: none;
 }
 
 /* button styling */
@@ -102,6 +96,7 @@ button {
   font-size: 14px;
 }
 .read-note-area h1 {
+  color: var(--not-red);
   font-size: var(--lrg-txt);
 }
 
@@ -167,6 +162,10 @@ i {
 }
 
 textarea {
+  width: 100%;
+  height: 500px;
+  padding: 12px 20px;
+  font-size: 14px;
   caret-color: var(--not-red);
   border: none;
   border-bottom: 2px solid var(--text);

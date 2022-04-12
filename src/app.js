@@ -129,3 +129,15 @@ function displayTheNote(event) {
   const closeBtn = document.querySelector('#closeButton')
   closeBtn.addEventListener('click', removeNoteTemplate)
 }
+
+const themeToggle = document.querySelector('.theme-toggle')
+themeToggle.addEventListener('click', changeTheme)
+
+function changeTheme() {
+  console.log('it works')
+  
+  if (document.querySelector(".light-theme").classList.contains("light-theme")) {
+    document.querySelector(".light-theme").classList.toggle("dark-theme")
+  }
+  
+}
