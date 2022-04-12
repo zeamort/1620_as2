@@ -59,6 +59,7 @@
 .side-nav li {
   list-style: none;
   margin: 5px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -98,6 +99,10 @@ button {
 }
 .read-note-area p {
   white-space: pre-wrap;
+  font-size: 14px;
+}
+.read-note-area h1 {
+  font-size: var(--lrg-txt);
 }
 
 .main {
